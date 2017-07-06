@@ -24,12 +24,20 @@ def get_via_module(board, drill, diameter, net):
 
     # instantiate new module
     m = pcbnew.MODULE(board)
-    #m.SetReference('REF**')
-    #m.SetValue(n)
+    m.SetReference('REF**')
+    m.SetValue(n)
     m.SetLastEditTime(pcbnew.GetNewTimeStamp())
 
     # adjust reference and value display settings
-    # TODO: m.GraphicalItems() does not yield any items, find a way to hide ref/value
+    r = m.Reference()
+    r.SetVisible(False)
+    r.SetTextSize(pcbnew.wxSize(mm2kicad(0.3), mm2kicad(0.3)))
+    r.SetThickness(mm2kicad(0.075))
+    v = m.Value()
+    v.SetVisible(False)
+    v.SetTextSize(pcbnew.wxSize(mm2kicad(0.3), mm2kicad(0.3)))
+    v.SetThickness(mm2kicad(0.075))
+    #v.SetLayer() # TODO: Move value to F.Fab layer (F.SilkS is default)
 
     lib_id = pcbnew.LIB_ID(n)
     m.SetFPID(lib_id)

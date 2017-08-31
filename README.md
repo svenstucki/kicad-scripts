@@ -15,6 +15,9 @@ the GND net. This is not always the right behaviour, especially if there are
 multiple different copper pours of different nets (it won't work at all in that
 case).
 
+If the vias should be associated to a different net than GND, the script must
+be edited accordingly.
+
 The script is called like this:
 
     ./fix_vias.py <input .kicad_pcb file>
